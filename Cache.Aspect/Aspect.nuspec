@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<version>$version$</version>
+		<authors>Jeff Dunlop</authors>
+		<owners />
+		<id>DbSoft.Cache.Aspect</id>
+		<title />
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>PostSharp Cache Aspect</description>
+	</metadata>
+	<files />
+</package>
