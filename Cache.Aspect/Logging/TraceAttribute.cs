@@ -6,7 +6,6 @@ namespace DbSoft.Cache.Aspect.Logging
     using System.Diagnostics;
     using System.Reflection;
     using System.Text;
-    using NLog;
     using PostSharp.Aspects;
 
     [Serializable]
@@ -53,12 +52,6 @@ namespace DbSoft.Cache.Aspect.Logging
 		/// <param name="args">Unused.</param> 
 		public override void OnSuccess(MethodExecutionArgs args)
 		{
-			var elapsed = DateTime.Now - _start;
-			var logger = LogManager.GetLogger(_methodName);
-			if (elapsed.Seconds > MinimumExecutionTimeToTrace)
-			{
-				logger.Trace("{0} Execution Time: {1}", _methodName, elapsed);
-			}
 		}
 
 		/// <summary> 
@@ -98,10 +91,6 @@ namespace DbSoft.Cache.Aspect.Logging
 			stringBuilder.Append(args.Exception.GetType().Name);
 			stringBuilder.Append(": ");
 			stringBuilder.Append(args.Exception.Message);
-
-			// Finally emit the error. 
-			var logger = LogManager.GetLogger(_methodName);
-			logger.Error(stringBuilder.ToString());
 		}
 	}
 }

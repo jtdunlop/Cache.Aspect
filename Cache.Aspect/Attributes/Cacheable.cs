@@ -5,7 +5,6 @@ namespace DbSoft.Cache.Aspect.Attributes
     using System;
     using System.Diagnostics;
     using System.Reflection;
-    using NLog;
     using PostSharp.Aspects;
     using Supporting;
 
@@ -75,11 +74,6 @@ namespace DbSoft.Cache.Aspect.Attributes
                     Object = args.ReturnValue,
                     Timestamp = DateTime.UtcNow
                 };
-				var elapsed = DateTime.Now - _start;
-				if (elapsed.Seconds > .5)
-				{
-					LogManager.GetLogger("CacheAspect").Trace("{0}.{1} Execution Time: {2}", args.Method.DeclaringType, args.Method.Name, DateTime.Now - _start);
-				}
             }
 
             private bool IsTooOld(DateTime time)
