@@ -13,8 +13,8 @@ allow repeated long running tasks to be preferable to saturating the data store.
 
 At application startup:
 
-CacheProvider.Cache = new CacheProvider();
-CacheService.Cache = CacheProvider.Cache;
+CacheProvider.Cache = new CacheProvider();<br/>
+CacheService.Cache = CacheProvider.Cache;<br/>
 CacheService.SessionProperty = "Token";
 
 To cache a method, simply decorate it with [Cache.Cacheable]. If the method has a parameter or object property matching 
@@ -30,7 +30,7 @@ var response = service.Call(request);
 
 This code will return a cached result identified by session token "x".
 
-To flush a session cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.Token)]. To flush the system
-cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.All)]
+To flush a session cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.Token)] with the relevant session value
+passed as a parameter or object property. To flush the system cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.All)]
 
 
