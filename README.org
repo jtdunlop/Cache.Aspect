@@ -1,4 +1,4 @@
-﻿This is a heavily modified version of Postsharp.Cache, available on nuget at https://www.nuget.org/packages/PostSharp.Cache
+This is a heavily modified version of Postsharp.Cache, available on nuget at https://www.nuget.org/packages/PostSharp.Cache
 and on github at https://github.com/agbell/attribute-based-caching. After using Postsharp.Cache in two production environments, 
 I felt compelled to adapt it to meet the following objectives:
 
