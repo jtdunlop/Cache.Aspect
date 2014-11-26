@@ -25,7 +25,7 @@ To set an expiry on a method, decorate it with [Cache.Cacheable(ttl)] where ttl 
 CacheService.SessionProperty sets the name of the parameter or parameter property that identifies the session making a request.
 Given the above example:
 
-var request = new Request { Id = 1, Token = "x" };
+var request = new Request { Id = 1, Token = "x" };<br />
 var response = service.Call(request);
 
 This code will return a cached result identified by session token "x".
