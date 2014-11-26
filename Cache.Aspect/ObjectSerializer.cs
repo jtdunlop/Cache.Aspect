@@ -1,4 +1,6 @@
-﻿namespace DbSoft.Cache.Aspect
+﻿// Heavily modified version of Postsharp.Cache https://www.nuget.org/packages/PostSharp.Cache
+
+namespace DbSoft.Cache.Aspect
 {
     using System.IO;
     using System.Xml.Serialization;

@@ -1,4 +1,6 @@
-﻿namespace DbSoft.Cache.Aspect.Supporting
+﻿// Heavily modified version of Postsharp.Cache https://www.nuget.org/packages/PostSharp.Cache
+
+namespace DbSoft.Cache.Aspect.Supporting
 {
     using System;
     using System.Collections.Generic;

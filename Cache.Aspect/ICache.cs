@@ -1,4 +1,6 @@
-﻿namespace DbSoft.Cache.Aspect
+﻿// Heavily modified version of Postsharp.Cache https://www.nuget.org/packages/PostSharp.Cache
+
+namespace DbSoft.Cache.Aspect
 {
     public interface ICache
     {

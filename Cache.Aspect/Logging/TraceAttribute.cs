@@ -1,4 +1,6 @@
-﻿namespace DbSoft.Cache.Aspect.Logging
+﻿// Heavily modified version of Postsharp.Cache https://www.nuget.org/packages/PostSharp.Cache
+
+namespace DbSoft.Cache.Aspect.Logging
 {
     using System;
     using System.Diagnostics;

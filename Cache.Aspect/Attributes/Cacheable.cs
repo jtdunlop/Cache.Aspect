@@ -1,3 +1,5 @@
+// Heavily modified version of Postsharp.Cache https://www.nuget.org/packages/PostSharp.Cache
+
 namespace DbSoft.Cache.Aspect.Attributes
 {
     using System;

@@ -8,6 +8,8 @@
 		<title />
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>PostSharp Cache Aspect</description>
+		<licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+		<projectUrl>https://github.com/jtdunlop/Cache.Aspect</projectUrl>
 	</metadata>
 	<files />
 </package>
