@@ -2,6 +2,7 @@
 
 namespace DbSoft.Cache.Aspect
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.Caching;
@@ -78,7 +79,7 @@ namespace DbSoft.Cache.Aspect
             }
             else
             {
-                var keys = _keys.Where(k => k.Contains(searchKey)).ToList();
+                var keys = _keys.Where(k => k.IndexOf(searchKey, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
                 foreach (var key in keys)
                 {
                     _keys.Remove(key);
