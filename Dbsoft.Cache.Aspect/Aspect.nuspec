@@ -12,4 +12,7 @@
 		<projectUrl>https://github.com/jtdunlop/Cache.Aspect</projectUrl>
 	</metadata>
 	<files />
+	<dependencies>
+		<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
+	</dependencies>
 </package>
