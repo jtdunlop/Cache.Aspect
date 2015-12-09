@@ -14,5 +14,6 @@
 	<files />
 	<dependencies>
 		<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
+		<dependency id="ServiceStack.Redis" version="[3.9,4.0)"/>
 	</dependencies>
 </package>

@@ -14,5 +14,7 @@
 	<files />
 	<dependencies>
 		<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
+		<dependency id="Newtonsoft.Json" version="[7.0,8)"/>
+		<dependency id="Postsharp" version="[4.1,4.2)"/>
 	</dependencies>
 </package>
