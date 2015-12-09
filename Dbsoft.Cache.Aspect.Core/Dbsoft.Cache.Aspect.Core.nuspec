@@ -1,15 +1,15 @@
-﻿<pre style="font-family: Consolas; font-size: 13; color: black; background: white;"><span style="color:blue;">&lt;?</span><span style="color:#a31515;">xml</span><span style="color:blue;">&nbsp;</span><span style="color:red;">version</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">1.0</span>&quot;<span style="color:blue;">?&gt;</span>
-<span style="color:blue;">&lt;</span><span style="color:#a31515;">package</span><span style="color:blue;">&nbsp;</span><span style="color:red;">xmlns</span><span style="color:blue;">=</span>&quot;<span style="color:blue;">http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd</span>&quot;<span style="color:blue;">&gt;</span>
-<span style="color:blue;">	&lt;</span><span style="color:#a31515;">metadata</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">version</span><span style="color:blue;">&gt;</span>$version$<span style="color:blue;">&lt;/</span><span style="color:#a31515;">version</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">authors</span><span style="color:blue;">&gt;</span>Jeff&nbsp;Dunlop<span style="color:blue;">&lt;/</span><span style="color:#a31515;">authors</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">owners</span><span style="color:blue;">&nbsp;/&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">id</span><span style="color:blue;">&gt;</span>DbSoft.Cache.Aspect<span style="color:blue;">.Core&lt;/</span><span style="color:#a31515;">id</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">title</span><span style="color:blue;">&nbsp;/&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">requireLicenseAcceptance</span><span style="color:blue;">&gt;</span>false<span style="color:blue;">&lt;/</span><span style="color:#a31515;">requireLicenseAcceptance</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">description</span><span style="color:blue;">&gt;</span>PostSharp&nbsp;Cache&nbsp;Aspect<span style="color:blue;"> Core&lt;/</span><span style="color:#a31515;">description</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">licenseUrl</span><span style="color:blue;">&gt;</span>http://opensource.org/licenses/Apache-2.0<span style="color:blue;">&lt;/</span><span style="color:#a31515;">licenseUrl</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">		&lt;</span><span style="color:#a31515;">projectUrl</span><span style="color:blue;">&gt;</span>https://github.com/jtdunlop/Cache.Aspect<span style="color:blue;">&lt;/</span><span style="color:#a31515;">projectUrl</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">	&lt;/</span><span style="color:#a31515;">metadata</span><span style="color:blue;">&gt;</span>
-<span style="color:blue;">	&lt;</span><span style="color:#a31515;">files</span><span style="color:blue;">&nbsp;/&gt;</span>
-<span style="color:blue;">&lt;/</span><span style="color:#a31515;">package</span><span style="color:blue;">&gt;</span></pre>
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<version>$version$</version>
+		<authors>Jeff Dunlop</authors>
+		<owners />
+		<id>DbSoft.Cache.Aspect.Core</id>
+		<title />
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>PostSharp Cache Aspect Core</description>
+		<licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+		<projectUrl>https://github.com/jtdunlop/Cache.Aspect</projectUrl>
+	</metadata>
+	<files />
+</package>
