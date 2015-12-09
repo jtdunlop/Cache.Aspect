@@ -16,12 +16,9 @@ namespace DbSoft.Cache.Aspect.Attributes
             private KeyBuilder _keyBuilder;
 			private readonly DeleteSettings _settings;
 
-	        private KeyBuilder KeyBuilder
-            {
-                get { return _keyBuilder ?? (_keyBuilder = new KeyBuilder()); }
-            }
+	        private KeyBuilder KeyBuilder => _keyBuilder ?? (_keyBuilder = new KeyBuilder());
 
- 			public TriggerInvalidation(DeleteSettings settings)
+            public TriggerInvalidation(DeleteSettings settings)
             {
 				_settings = settings;
             }
@@ -36,7 +33,7 @@ namespace DbSoft.Cache.Aspect.Attributes
             {
                 KeyBuilder.MethodParameters = method.GetParameters();
 	            Debug.Assert(method.DeclaringType != null, "method.DeclaringType != null");
-	            KeyBuilder.MethodName =  string.Format("{0}.{1}", method.DeclaringType.FullName, method.Name);
+	            KeyBuilder.MethodName = $"{method.DeclaringType.FullName}.{method.Name}";
             }
 
             public override void OnExit(MethodExecutionArgs args)
@@ -45,10 +42,10 @@ namespace DbSoft.Cache.Aspect.Attributes
 	            switch (_settings)
 	            {
 		            case DeleteSettings.Token:
-			            CacheService.Cache.DeleteAll(KeyBuilder.GetSessionProperty(args.Arguments) + ".");
+			            CacheService.GetCache("default").DeleteAll(KeyBuilder.GetSessionProperty(args.Arguments) + ".");
 			            break;
                     case DeleteSettings.All:
-                        CacheService.Cache.DeleteAll();
+                        CacheService.GetCache("default").DeleteAll();
                         break;
 	            }
 	            base.OnExit(args);

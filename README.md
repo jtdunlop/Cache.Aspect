@@ -6,31 +6,24 @@ I felt compelled to adapt it to meet the following objectives:
 - Support for ttl on a per-method basis
 - Able to detect the difference between two complex request objects
 
-Cache matching is based on comparing the deserialization of all parameters passed to a method to the deserialization of previous calls.
-If a complex request passed and any property anywhere is different, it will be independently cached. This is obviously potentially
-memory intensive, but performance is always a tradeoff against space. In practice, I have found that allocating more memory to 
-allow repeated long running tasks to be preferable to saturating the data store.
+Cache matching is based on comparing a hash of the method name in conjunction with the deserialization of all parameters passed to a method to 
+the deserialization of previous calls. Additionally, cache segregation is supported via naming a parameter/property on which 
+the cache should be segregated. The primary benefit of segregating data is to allow a portion of the cache to be flushed without impacting
+other tenants/users. Even if segregation isn't used, including a tenantid/userid in method calls wil return distinct result sets
+as the hash won't match. For the remainder of this document, tenantId will be assumed to be the named parameter/property
 
 At application startup:
 
-CacheProvider.Cache = new CacheProvider();<br/>
-CacheService.Cache = CacheProvider.Cache;<br/>
-CacheService.SessionProperty = "Token";
+CacheService.SessionProperty = "tenantid"; // Case insensitive
+CacheService.CacheProviderFactory = new CacheProviderFactory(); // RedisCacheProviderFactory is also included.
 
 To cache a method, simply decorate it with [Cache.Cacheable]. If the method has a parameter or object property matching 
 CacheService.SessionProperty, it will use per-session matching; otherwise it will use global matching.
 
 To set an expiry on a method, decorate it with [Cache.Cacheable(ttl)] where ttl is an integer of seconds.
 
-CacheService.SessionProperty sets the name of the parameter or parameter property that identifies the session making a request.
-Given the above example:
-
-var request = new Request { Id = 1, Token = "x" };<br />
-var response = service.Call(request);
-
-This code will return a cached result identified by session token "x".
-
-To flush a session cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.Token)] with the relevant session value
-passed as a parameter or object property. To flush the system cache, call a method decorated with [Cache.TriggerInvalidation(DeleteSettings.All)]
+To flush a tenant cache, call CacheService.ClearCache(tenantId). 
+To flush the global cache, call CacheService.ClearCache("default"). 
+To flush all caches, call CacheService.ClearAllCaches().
 
 

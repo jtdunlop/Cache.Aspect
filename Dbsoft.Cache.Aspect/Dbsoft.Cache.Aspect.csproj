@@ -8,13 +8,13 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DbSoft.Cache.Aspect</RootNamespace>
-    <AssemblyName>DbSoft.Cache.Aspect</AssemblyName>
+    <AssemblyName>Local.Cache.Aspect</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <DontImportPostSharp>True</DontImportPostSharp>
     <TargetFrameworkProfile />
+    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,13 +36,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="PostSharp, Version=4.0.36.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PostSharp.4.0.36\lib\net35-client\PostSharp.dll</HintPath>
+    <Reference Include="PostSharp, Version=4.1.31.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.4.1.31\lib\net35-client\PostSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,10 +58,8 @@
     <Compile Include="Attributes\Cacheable.cs" />
     <Compile Include="Attributes\TriggerInvalidation.cs" />
     <Compile Include="CacheProvider.cs" />
+    <Compile Include="CacheProviderFactory.cs" />
     <Compile Include="CacheService.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="Implementations\NoCache.cs" />
-    <Compile Include="Logging\TraceAttribute.cs" />
     <Compile Include="ObjectSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Supporting\DateWrapper.cs" />
@@ -72,22 +69,23 @@
     <None Include="Aspect.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implementations\" />
+    <Folder Include="Logging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dbsoft.Cache.Aspect.Core\Dbsoft.Cache.Aspect.Core.csproj">
+      <Project>{db410076-9201-4651-9cbd-777e88fb2d9a}</Project>
+      <Name>Dbsoft.Cache.Aspect.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <Import Project="..\packages\PostSharp.4.0.36\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.0.36\tools\PostSharp.targets')" />
+  <Import Project="..\packages\PostSharp.4.1.31\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.1.31\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
-    <Error Condition="!Exists('..\packages\PostSharp.4.0.36\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
-    <Error Condition="Exists('..\packages\PostSharp.4.0.36\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="!Exists('..\packages\PostSharp.4.1.31\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.1.31\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

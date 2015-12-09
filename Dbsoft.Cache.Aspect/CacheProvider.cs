@@ -6,6 +6,7 @@ namespace DbSoft.Cache.Aspect
     using System.Collections.Generic;
     using System.Linq;
     using System.Runtime.Caching;
+    using Dbsoft.Cache.Aspect.Core;
 
     // Key structure:
     // guid(session).keyname.serialization
@@ -15,12 +16,16 @@ namespace DbSoft.Cache.Aspect
 
     public class CacheProvider : ICache
     {
-        public static CacheProvider Cache;
-
-        public CacheProvider()
+        public CacheProvider(string name)
         {
-            _cache = MemoryCache.Default;
+            Name = name;
+            _cache = name == "default" ? MemoryCache.Default : new MemoryCache(name);
             _keys = new HashSet<string>();
+        }
+
+        public object Get(string key)
+        {
+            return _cache[key];
         }
 
         public bool Contains(string key)
@@ -51,12 +56,10 @@ namespace DbSoft.Cache.Aspect
             ClearAll(null);
         }
 
+        public string Name { get; }
+
         public object this[string key]
         {
-            get
-            {
-                return _cache[key];
-            }
             set
             {
                 _cache[key] = value;
@@ -66,6 +69,11 @@ namespace DbSoft.Cache.Aspect
                 }
             }
         }
+
+        public T Get<T>(string key)
+        {
+            return (T)_cache[key];
+        } 
 
         private void ClearAll(string searchKey)
         {

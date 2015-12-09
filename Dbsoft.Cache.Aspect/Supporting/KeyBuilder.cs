@@ -38,11 +38,11 @@ namespace DbSoft.Cache.Aspect.Supporting
 			return FindSessionProperty(arguments);
 		}
 
-		public string BuildCacheKey(Arguments arguments)
+		public CacheKeyResult BuildCacheKey(Arguments arguments)
         {
             var cacheKeyBuilder = new StringBuilder();
 
-			var sessionProperty = FindSessionProperty(arguments) ?? "";
+			var sessionProperty = FindSessionProperty(arguments) ?? "default";
 			cacheKeyBuilder.Append(sessionProperty + ".");
 			cacheKeyBuilder.Append(MethodName);
             cacheKeyBuilder.Append(".");
@@ -50,8 +50,8 @@ namespace DbSoft.Cache.Aspect.Supporting
 			{
 				AppendToKey(arg, cacheKeyBuilder);
 			}
-
-            return cacheKeyBuilder.ToString();
+            var code = cacheKeyBuilder.ToString().GetHashCode().ToString();
+            return new CacheKeyResult { Key = code, Token = sessionProperty };
         }
 
 		private bool IsSessionProperty(string prop)
@@ -103,6 +103,12 @@ namespace DbSoft.Cache.Aspect.Supporting
 			return Convert.GetTypeCode(t) != TypeCode.Object;
 		}
      
+    }
+
+    public class CacheKeyResult
+    {
+        public string Key { get; set; }
+        public string Token { get; set; }
     }
 
     public enum DeleteSettings

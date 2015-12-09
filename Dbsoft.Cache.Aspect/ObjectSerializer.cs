@@ -13,7 +13,16 @@ namespace DbSoft.Cache.Aspect
             var textWriter = new StringWriter();
 
             xmlSerializer.Serialize(textWriter, toSerialize);
-            return textWriter.ToString();
+            var result = textWriter.ToString();
+            return result;
+        }
+
+        public static object DeserializeObject(this string toDeserialize)
+        {
+            var xmlSerializer = new XmlSerializer(toDeserialize.GetType());
+            var textReader = new StringReader(toDeserialize);
+            var result = xmlSerializer.Deserialize(textReader);
+            return result;
         }
     }
 }
