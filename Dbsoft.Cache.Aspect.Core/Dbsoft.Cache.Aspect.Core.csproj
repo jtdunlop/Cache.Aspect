@@ -48,7 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dbsoft.Cache.Aspect.Core.Designer.nuspec" />
     <None Include="Dbsoft.Cache.Aspect.Core.nuspec">
       <SubType>UserControl</SubType>
     </None>
