@@ -10,10 +10,10 @@
 		<description>PostSharp Cache Aspect</description>
 		<licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
 		<projectUrl>https://github.com/jtdunlop/Cache.Aspect</projectUrl>
+		<dependencies>
+			<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
+			<dependency id="ServiceStack.Redis" version="[3.9,4.0)"/>
+		</dependencies>
 	</metadata>
 	<files />
-	<dependencies>
-		<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
-		<dependency id="ServiceStack.Redis" version="[3.9,4.0)"/>
-	</dependencies>
 </package>
