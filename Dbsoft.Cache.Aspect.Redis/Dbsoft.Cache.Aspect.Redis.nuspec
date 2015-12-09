@@ -13,6 +13,8 @@
 		<dependencies>
 			<dependency id="Dbsoft.Cache.Aspect.Core" version="[$version$]" />
 			<dependency id="ServiceStack.Redis" version="[3.9,4.0)"/>
+			<dependency id="ServiceStack.Common" version="[3.9,4.0)"/>
+			<dependency id="ServiceStack.Text" version="[3.9,4.0)"/>
 		</dependencies>
 	</metadata>
 	<files />
