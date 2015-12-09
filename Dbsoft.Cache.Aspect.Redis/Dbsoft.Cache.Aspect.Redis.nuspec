@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<version>$version$</version>
+		<authors>Jeff Dunlop</authors>
+		<owners />
+		<id>DbSoft.Cache.Aspect.Redis</id>
+		<title />
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>PostSharp Cache Aspect</description>
+		<licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+		<projectUrl>https://github.com/jtdunlop/Cache.Aspect</projectUrl>
+	</metadata>
+	<files />
+	<dependencies>
+		<dependency id="Dbsoft.Cache.Aspect.Core" version="[1.0.$teamcity.build.id$]" />
+	</dependencies>
+</package>
