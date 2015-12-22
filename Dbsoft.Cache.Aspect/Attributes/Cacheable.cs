@@ -38,7 +38,8 @@ namespace DbSoft.Cache.Aspect.Attributes
             // This method is executed before the execution of target methods of this aspect.
             public override void OnEntry(MethodExecutionArgs args)
             {
-                if ( GetEnumerableType(args.ReturnValue.GetType())  != null )
+                var info = (MethodInfo)args.Method;
+                if (GetEnumerableType(info.ReturnType) != null)
                 {
                     throw new NotSupportedException("Generic IEnumerables don't cache properly. Try a List<T> instead.");
                 }
@@ -60,7 +61,6 @@ namespace DbSoft.Cache.Aspect.Attributes
                     if (value != null && !IsTooOld(value.Timestamp))
                     {
                         // The value was found in cache. Don't execute the method. Return immediately.
-                        var info = (MethodInfo)args.Method;
                         args.ReturnValue = JsonConvert.DeserializeObject(value.Object, info.ReturnType);
                         args.FlowBehavior = FlowBehavior.Return;
                     }
