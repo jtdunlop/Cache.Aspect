@@ -71,10 +71,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Logging\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dbsoft.Cache.Aspect.Core\Dbsoft.Cache.Aspect.Core.csproj">
       <Project>{db410076-9201-4651-9cbd-777e88fb2d9a}</Project>

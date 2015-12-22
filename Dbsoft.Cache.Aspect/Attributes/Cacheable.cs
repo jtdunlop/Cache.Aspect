@@ -3,6 +3,7 @@
 namespace DbSoft.Cache.Aspect.Attributes
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
     using Newtonsoft.Json;
@@ -37,6 +38,10 @@ namespace DbSoft.Cache.Aspect.Attributes
             // This method is executed before the execution of target methods of this aspect.
             public override void OnEntry(MethodExecutionArgs args)
             {
+                if ( GetEnumerableType(args.ReturnValue.GetType())  != null )
+                {
+                    throw new NotSupportedException("Generic IEnumerables don't cache properly. Try a List<T> instead.");
+                }
                 KeyBuilder.SessionProperty = CacheService.SessionProperty;
                 var cacheKey = KeyBuilder.BuildCacheKey(args.Arguments);
                 try
@@ -74,6 +79,19 @@ namespace DbSoft.Cache.Aspect.Attributes
                 {
                     args.MethodExecutionTag = cacheKey;
                 }
+            }
+
+            static Type GetEnumerableType(Type type)
+            {
+                foreach (Type intType in type.GetInterfaces())
+                {
+                    if (intType.IsGenericType
+                        && intType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                    {
+                        return intType.GetGenericArguments()[0];
+                    }
+                }
+                return null;
             }
 
             private string CacheName(string token)
