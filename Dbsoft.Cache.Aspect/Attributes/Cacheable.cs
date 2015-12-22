@@ -3,7 +3,6 @@
 namespace DbSoft.Cache.Aspect.Attributes
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Reflection;
     using Newtonsoft.Json;
@@ -39,7 +38,7 @@ namespace DbSoft.Cache.Aspect.Attributes
             public override void OnEntry(MethodExecutionArgs args)
             {
                 var info = (MethodInfo)args.Method;
-                if (GetEnumerableType(info.ReturnType) != null)
+                if (IsIEnumerable(info.ReturnType))
                 {
                     throw new NotSupportedException("Generic IEnumerables don't cache properly. Try a List<T> instead.");
                 }
@@ -81,17 +80,9 @@ namespace DbSoft.Cache.Aspect.Attributes
                 }
             }
 
-            static Type GetEnumerableType(Type type)
+            static bool IsIEnumerable(Type type)
             {
-                foreach (Type intType in type.GetInterfaces())
-                {
-                    if (intType.IsGenericType
-                        && intType.GetGenericTypeDefinition() == typeof(IEnumerable<>))
-                    {
-                        return intType.GetGenericArguments()[0];
-                    }
-                }
-                return null;
+                return type.Name.Contains("IEnumerable");
             }
 
             private string CacheName(string token)
