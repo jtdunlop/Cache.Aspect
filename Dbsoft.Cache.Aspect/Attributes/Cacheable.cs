@@ -38,10 +38,7 @@ namespace DbSoft.Cache.Aspect.Attributes
             public override void OnEntry(MethodExecutionArgs args)
             {
                 var info = (MethodInfo)args.Method;
-                if (IsIEnumerable(info.ReturnType))
-                {
-                    throw new NotSupportedException("Generic IEnumerables don't cache properly. Try a List<T> instead.");
-                }
+                
                 KeyBuilder.SessionProperty = CacheService.SessionProperty;
                 var cacheKey = KeyBuilder.BuildCacheKey(args.Arguments);
                 try
