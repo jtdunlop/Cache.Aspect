@@ -55,12 +55,12 @@ namespace DbSoft.Cache.Aspect.Attributes
                         return;
                     }
 
-                    var value = JsonConvert.DeserializeObject<DateWrapper<string>>((string)entry);
+                    var value = (DateWrapper)entry;
 
-                    if (value != null && !IsTooOld(value.Timestamp))
+                    if (!IsTooOld(value.Timestamp))
                     {
                         // The value was found in cache. Don't execute the method. Return immediately.
-                        args.ReturnValue = JsonConvert.DeserializeObject(value.Object, info.ReturnType);
+                        args.ReturnValue = value;
                         args.FlowBehavior = FlowBehavior.Return;
                     }
                     else
@@ -94,9 +94,9 @@ namespace DbSoft.Cache.Aspect.Attributes
             public override void OnSuccess(MethodExecutionArgs args)
             {
                 var cacheKey = (CacheKeyResult)args.MethodExecutionTag;
-                var entry = new DateWrapper<string>
+                var entry = new DateWrapper
                 {
-                    Object = JsonConvert.SerializeObject(args.ReturnValue),
+                    Object = args.ReturnValue,
                     Timestamp = DateTime.UtcNow
                 };
                 CacheService.GetCache(CacheName(cacheKey.Token))[cacheKey.Key] = JsonConvert.SerializeObject(entry);

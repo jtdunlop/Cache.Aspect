@@ -5,9 +5,9 @@ namespace DbSoft.Cache.Aspect.Supporting
     using System;
 
     [Serializable]
-    public class DateWrapper<T>
+    public class DateWrapper
     {
-        public T Object
+        public object Object
         {
             get;
             set;
