@@ -96,7 +96,7 @@ namespace DbSoft.Cache.Aspect.Attributes
                     Object = args.ReturnValue,
                     Timestamp = DateTime.UtcNow
                 };
-                CacheService.GetCache(CacheName(cacheKey.Token))[cacheKey.Key] = JsonConvert.SerializeObject(entry);
+                CacheService.GetCache(CacheName(cacheKey.Token))[cacheKey.Key] = entry;
             }
 
             private bool IsTooOld(DateTime time)
