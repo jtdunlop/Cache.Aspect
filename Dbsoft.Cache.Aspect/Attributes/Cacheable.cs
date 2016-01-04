@@ -57,7 +57,7 @@ namespace DbSoft.Cache.Aspect.Attributes
                     if (!IsTooOld(value.Timestamp))
                     {
                         // The value was found in cache. Don't execute the method. Return immediately.
-                        args.ReturnValue = value;
+                        args.ReturnValue = value.Object;
                         args.FlowBehavior = FlowBehavior.Return;
                     }
                     else
